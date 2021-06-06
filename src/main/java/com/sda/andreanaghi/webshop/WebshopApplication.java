@@ -2,6 +2,7 @@ package com.sda.andreanaghi.webshop;
 
 import com.sda.andreanaghi.webshop.model.Account;
 import com.sda.andreanaghi.webshop.service.CustomerService;
+import com.sda.andreanaghi.webshop.service.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -13,6 +14,8 @@ public class WebshopApplication implements CommandLineRunner {
 
     @Autowired
     private CustomerService customerService;
+    @Autowired
+    private MailService mailService;
 
     public static void main(String[] args) {
 
@@ -32,8 +35,10 @@ public class WebshopApplication implements CommandLineRunner {
 
         customerService.addCustomer(account1);
 
-       // customerService.getCustomerAccounts().forEach(account -> System.out.println(account));
+        // customerService.getCustomerAccounts().forEach(account -> System.out.println(account));
         customerService.getCustomerAccounts().forEach(System.out::println);
 
+        mailService.sendMail("naghi.andrea@gmail.com", "client@icloud.com",
+                "Mock mail subject", "Mock mail content");
     }
 }
