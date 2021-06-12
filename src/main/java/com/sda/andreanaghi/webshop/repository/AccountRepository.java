@@ -24,7 +24,7 @@ public interface AccountRepository extends CrudRepository<Account, Long> {
 
     List<Account> findAllByIsClosed(Boolean isClosed);
 
-    List<Account> findAllByBillingAddress(String billingAddress);
+    List<Account> findAllByBillingAddress(String city);
 
     List<Account> findAllByCreationDateBetween(Date startDate, Date endDate);
 
