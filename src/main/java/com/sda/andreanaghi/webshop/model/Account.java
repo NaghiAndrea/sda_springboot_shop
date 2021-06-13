@@ -11,12 +11,21 @@ public class Account {
     @Column(name = "id")
     private Long id;
 
+    @Column(name = "login")
+    private String login;
+
+    @Column(name = "password")
+    private String password;
+
     @Column(name = "billing_address")
     private String billingAddress;
+
     @Column(name = "is_closed")
     private Boolean isClosed;
+
     @Column(name = "creation_date")
     private Date creationDate;
+
     @Column(name = "closed_date")
     private Date closedDate;
 
@@ -59,6 +68,23 @@ public class Account {
     public void setClosedDate(Date closedDate) {
         this.closedDate = closedDate;
     }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
 
     @Override
     public String toString() {
