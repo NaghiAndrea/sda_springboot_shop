@@ -1,7 +1,9 @@
 package com.sda.andreanaghi.webshop.controller;
 
+import com.sda.andreanaghi.webshop.error.ResourceNotFoundException;
 import com.sda.andreanaghi.webshop.model.Product;
 import com.sda.andreanaghi.webshop.service.ProductService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,13 +24,22 @@ public class ProductController {
         return productService.findAll();
     }
 
+//    @GetMapping("/products/{id}")
+//    public Product getProductById(@PathVariable(value = "id") Long productId) {
+//        Optional<Product> product = productService.findById(productId);
+//        if(product.isPresent()) {
+//            return product.get();
+//        }
+//       throw new IllegalArgumentException();      //Nu mai returnam asta ca este un Not Found Exception//
+//    }
+
     @GetMapping("/products/{id}")
-    public Product getProductById(@PathVariable(value = "id") Long productId){
+    public ResponseEntity<Product> getProductById(@PathVariable(value = "id") Long productId) throws ResourceNotFoundException {
         Optional<Product> product = productService.findById(productId);
         if(product.isPresent()) {
-            return product.get();
+            return ResponseEntity.ok(product.get());
         }
-        throw new IllegalArgumentException();
+        throw new ResourceNotFoundException("product with id: " + productId + " was not found!");
     }
 
     @PostMapping("/products")

@@ -7,9 +7,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
-//@EnableTransactionManagement
-//@EnableJpaRepositories(basePackages = "com.sda.andreanaghi.webshop.repository")
-//@EntityScan(basePackages = "com.sda.andreanaghi.webshop.model")
 public class RestWebshopApplication {
 
     public static void main(String[] args) {
