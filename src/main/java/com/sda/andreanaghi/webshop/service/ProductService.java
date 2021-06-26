@@ -38,4 +38,13 @@ public class ProductService {
        // return Optional.ofNullable(productRepository.findById(productId));
         return productRepository.findById(productId);
     }
+
+    public void delete(Long id) {
+        Optional<Product> product = productRepository.findById(id);
+        if (product.isPresent()){
+          productRepository.delete(product.get());
+        } else {
+            throw new IllegalArgumentException("Product not found");
+        }
+    }
 }
