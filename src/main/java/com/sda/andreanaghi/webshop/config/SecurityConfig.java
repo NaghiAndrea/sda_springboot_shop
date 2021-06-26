@@ -28,7 +28,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/account/create").permitAll()
                // .antMatchers("/alt URL pe care vrem sa permitem").permitAll()
                 .anyRequest().authenticated()
-                .and().httpBasic();
+                .and()
+                .httpBasic();
     }
 
     @Bean

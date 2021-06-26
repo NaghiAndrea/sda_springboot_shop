@@ -41,7 +41,7 @@ public class AccountService implements UserDetailsService {
         accountToBeSaved.setLogin(account.getLogin());
         accountToBeSaved.setPassword(passwordEncoder.encode(account.getPassword()));
         accountToBeSaved.setBillingAddress(account.getBillingAddress());
-        accountToBeSaved.setCreationDate((new Date()));
+        accountToBeSaved.setCreationDate(new Date());
 
         accountRepository.save(accountToBeSaved);
     }
