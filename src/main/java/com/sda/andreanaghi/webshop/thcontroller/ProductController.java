@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class ProductController {
@@ -51,6 +52,31 @@ public class ProductController {
         } else {
             productService.save(product);
         }
+
+        List<Product> products = productService.findAll();
+        model.addAttribute("products",products);
+
+        return "products";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String showEditProductPage(@PathVariable(value = "id") Long id, Model model){
+
+        Product product = productService.findById(id).get();
+
+        model.addAttribute("product",product);
+
+        return "edit-product";
+    }
+
+    @PostMapping("/update/{id}")
+    public String updateProduct(@PathVariable(value = "id") Long id, @Valid Product product,
+                                BindingResult result, Model model){
+        if (result.hasErrors()){
+            product.setId(id);
+            return "edit-product";
+        }
+        productService.save(product);
 
         List<Product> products = productService.findAll();
         model.addAttribute("products",products);
