@@ -50,6 +50,6 @@ public class UserRegistrationController {
         account.setClosedDate(new Date());
 
         accountService.createAccount(account);
-        return "redirect:/registration?succes";
+        return "redirect:/registration?success";
     }
 }
