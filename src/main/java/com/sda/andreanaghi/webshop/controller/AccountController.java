@@ -58,13 +58,15 @@ public class AccountController {
     @CrossOrigin
     public Boolean login(@RequestBody Account account) {
         UserDetails userDetails = accountService.loadUserByUsername(account.getLogin());
-        if (userDetails != null && bCryptPasswordEncoder.matches(userDetails.getPassword(),
-                bCryptPasswordEncoder.encode(account.getPassword()))
+        if (userDetails != null && bCryptPasswordEncoder.matches(
+                                                account.getPassword(),
+                                                userDetails.getPassword()
+                                                )
             )
         {
             return true;
         }
-        return true;
+        return false;
     }
 
     @PostMapping("/user")
